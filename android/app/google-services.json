@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "594042608398",
+    "firebase_url": "https://posts-228d0.firebaseio.com",
+    "project_id": "posts-228d0",
+    "storage_bucket": "posts-228d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594042608398:android:1252957c3f57c04fee955f",
+        "android_client_info": {
+          "package_name": "com.nihad.posts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594042608398-g0jbebs1gc4aihqj5s2nl5aooikb18bc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdu80RgDcz2DWpax2rAcEedCT1HpWdxJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "594042608398-g0jbebs1gc4aihqj5s2nl5aooikb18bc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
