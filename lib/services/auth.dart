@@ -13,8 +13,9 @@ class AuthService {
       return result.user;
     }
     catch (err) {
-      print(err.toString());
-      return null;
+      if(err.toString().contains('INVALID')){return 'The email address is badly formatted';}
+      else if(err.toString().contains('ALREADY')){return 'The email address is already in use by another account';}
+      return 'The password must be 6 characters long or more';
     }
   }
 
@@ -25,8 +26,9 @@ class AuthService {
       return result.user;
     }
     catch (err) {
-      print(err.toString());
+      return null;
     }
+
   }
 
   Future signOut() async {
