@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:posts/services/auth.dart';
+import 'package:posts/services/database.dart';
 import 'models/post.dart';
 import 'textinput.dart';
 import 'postlist.dart';
@@ -7,18 +9,22 @@ import 'postlist.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
-  final String name;
-  HomePage(this.name);
+  final FirebaseUser user;
+  HomePage(this.user);
 
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Post>posts=new List<Post>();
-
+  final database=new Database();
   void addPost(String text){
-    setState(() {
-      posts.add(new Post(text,widget.name));
-    });}
+    var post=new Post(text,widget.user.uid);
+    post.setId(database.addPost(post));
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +38,7 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Column(
           children: <Widget>[
-            Expanded(child: PostList(posts)) ,
+            Expanded(child: PostList(widget.user)) ,
             Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                 child: TextInputWidget(addPost)),
