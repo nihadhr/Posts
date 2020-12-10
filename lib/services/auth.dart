@@ -10,6 +10,7 @@ class AuthService {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: pass);
+      result.user.sendEmailVerification();
       return result.user;
     }
     catch (err) {

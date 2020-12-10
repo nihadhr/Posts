@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
         routes: <String, WidgetBuilder> {
           '/register': (BuildContext context) => new Register(),
           '/sign': (BuildContext context) => new Sign(),
+          '/wrapper': (BuildContext context) => new Wrapper(),
         },
       ),
     );
