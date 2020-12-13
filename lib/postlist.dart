@@ -28,16 +28,17 @@ class _PostListState extends State<PostList> {
   }
   List<Post>transform(DataSnapshot dataSnapshot){
     List<Post>lista=[];
-    dataSnapshot.value.forEach((key, values) {
-      Post novi = new Post(
-          values['text'] ?? 'Empty', values['author'] ?? 'Unknown');
-      novi.setId(_apiService.getDatabaseReference().child('posts/' + key));
-      if (values['usersLiked'] != null) {
-        novi.usersLiked = values['usersLiked'].toSet();
-      }
-      lista.add(novi);
-    });
-
+    if(dataSnapshot.value !=null) {
+      dataSnapshot.value.forEach((key, values) {
+        Post novi = new Post(
+            values['text'] ?? 'Empty', values['author'] ?? 'Unknown');
+        novi.setId(_apiService.getDatabaseReference().child('posts/' + key));
+        if (values['usersLiked'] != null) {
+          novi.usersLiked = values['usersLiked'].toSet();
+        }
+        lista.add(novi);
+      });
+    }
     return lista;
   }
   @override
@@ -60,6 +61,11 @@ class _PostListState extends State<PostList> {
                itemCount: lista.length,
               itemBuilder: (context,index){
               var post=lista[index];
+              if(lista.length==0){
+                return Text('There are no posts here',
+                  style: TextStyle(color: Colors.black));
+              }
+              else{
                 return Card(
                   child: Row(
                     children: <Widget>[
@@ -83,6 +89,7 @@ class _PostListState extends State<PostList> {
                     ],
                   ),
                 );
+              }
               },
             );
           }
