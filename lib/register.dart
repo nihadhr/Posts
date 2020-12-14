@@ -102,6 +102,7 @@ class _RegisterState extends State<Register> {
                         setState(() {
                           loading = true;
                         });
+
                         dynamic res = await _authService.registerEmailPassword(
                             this.email, this.pass, this.name, this.surname, this
                             .nickname);

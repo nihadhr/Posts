@@ -33,8 +33,7 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text('Home'),backgroundColor: Colors.deepOrange,
-        actions: <Widget>[
-
+          actions: <Widget>[
           IconButton(icon:Icon(Icons.logout,color: Colors.white,), onPressed:()async{ await _authService.signOut();},),
           IconButton(icon:Icon(Icons.settings,color: Colors.white,),
               onPressed:(){

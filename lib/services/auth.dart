@@ -36,11 +36,22 @@ class AuthService {
     }
 
   }
-
   Future signOut() async {
     _auth.signOut();
   }
-
+  Future changePassword(String current,String newone) async {
+    var user=await _auth.currentUser();
+    var authCredential=EmailAuthProvider.getCredential(email:user.email,password: current);
+    try{
+     var reAuth=await user.reauthenticateWithCredential(authCredential);
+     user.updatePassword(newone);
+    }catch(e){
+      print(e.toString());
+      if(e.toString().contains('WRONG_PASSWORD')){return 'Current password is incorrect.';}
+      if(e.toString().contains('WEAK_PASSWORD')){return 'New password requires at least 6 characters';}
+      return 'Unable to complete request';
+    }
+  }
   Stream<FirebaseUser> get user {
     return _auth.onAuthStateChanged;
   }

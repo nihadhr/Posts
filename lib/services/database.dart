@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:posts/models/post.dart';
 import 'package:posts/models/user.dart';
@@ -37,13 +36,14 @@ class Database {
   Future updateUser(String uid,String name,String surname,String nickname)async{
     var user=await getUser(uid);
     var idUser=user.GetDatabaseReference();
-    idUser.update(user.getJson());
+    var newone=new User(uid:uid,name:name,surname:surname,nickname:nickname);
+    idUser.update(newone.getJson());
   }
   Future<bool> isNicknameAvailable(String nickname)async{
     bool isAvailable=true;
     DataSnapshot dataSnapshot = await databaseRef.child('users/').once();
     if (dataSnapshot.value != null) {
-      dataSnapshot.value.forEach((key, values) {
+      dataSnapshot.value.forEach((key, values) {  //better use .any or for loop, foreach can't exit
         if (values['nickname']==nickname) {
           isAvailable=false;
         }
