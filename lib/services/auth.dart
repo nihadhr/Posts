@@ -52,6 +52,14 @@ class AuthService {
       return 'Unable to complete request';
     }
   }
+  Future resetPassword(String email)async{
+    try{
+     await _auth.sendPasswordResetEmail(email: email);
+    }catch(e){
+      if(e.toString().contains('NOT_FOUND'))return 'User not found'; return 'Malformed email';
+    }
+  }
+
   Stream<FirebaseUser> get user {
     return _auth.onAuthStateChanged;
   }

@@ -4,6 +4,7 @@ import 'package:posts/services/auth.dart';
 import 'package:posts/services/database.dart';
 import 'package:posts/usersettings.dart';
 import 'models/post.dart';
+import 'models/user.dart';
 import 'textinput.dart';
 import 'postlist.dart';
 
@@ -34,11 +35,11 @@ class _HomePageState extends State<HomePage> {
       home: Scaffold(
         appBar: AppBar(title: Text('Home'),backgroundColor: Colors.deepOrange,
           actions: <Widget>[
-          IconButton(icon:Icon(Icons.logout,color: Colors.white,), onPressed:()async{ await _authService.signOut();},),
           IconButton(icon:Icon(Icons.settings,color: Colors.white,),
               onPressed:(){
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserSettings(widget.user.uid)));
-              })
+              }),
+          IconButton(icon:Icon(Icons.logout,color: Colors.white,), onPressed:()async{ await _authService.signOut();},)
         ],
         ),
         body: Column(

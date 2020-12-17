@@ -15,7 +15,7 @@ class Database {
 
 
   DatabaseReference addUser(User user) {
-    var id = databaseRef.child('users/').push();
+    var id = databaseRef.child('users/'+user.uid);
     id.set(user.getJson());
     return id;
   }
@@ -33,6 +33,12 @@ class Database {
     }
    return user;
   }
+
+  DatabaseReference userReference(String uid){
+    return FirebaseDatabase.instance.reference().child('users/'+uid);
+    //uid is same as the key
+  }
+
   Future updateUser(String uid,String name,String surname,String nickname)async{
     var user=await getUser(uid);
     var idUser=user.GetDatabaseReference();

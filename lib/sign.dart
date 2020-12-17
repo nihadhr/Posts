@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:posts/loading.dart';
+import 'package:posts/resetpassword.dart';
 import 'package:posts/services/auth.dart';
 
 class Sign extends StatefulWidget {
@@ -77,7 +78,12 @@ class _SignState extends State<Sign> {
                     },
                   ),
                   SizedBox(height: 12.0),
-                  GestureDetector(child: Text("Don't have an account? Register here"),
+                  GestureDetector(child: Text("Forgot my password"),
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>ResetPassword() ));
+                    },),
+                  SizedBox(height: 4.0),
+                  GestureDetector(child: Text("Don't have an account ? Register here"),
                     onTap: (){
                       widget.set();
                     },),
